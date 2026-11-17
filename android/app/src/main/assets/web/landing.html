@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Intercom Local · Preparar iPhone</title>
+<style>
+:root{--bg:#14181a;--panel:#1d2326;--line:#2c3437;--fg:#e7ece9;--dim:#8e9a96;--accent:#f2a531;
+  --sans:-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 var(--sans);
+  padding:max(20px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 32px max(16px,env(safe-area-inset-left,0px))}
+main{max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+h1{font-size:15px;letter-spacing:.14em;text-transform:uppercase;margin:0}
+h1 b{color:var(--accent)}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.step h2{margin:0;font-size:17px;text-wrap:balance}
+.step h2 span{color:var(--accent);font-variant-numeric:tabular-nums;margin-right:6px}
+ol{margin:0;padding-left:20px;color:var(--dim)} ol li{margin-block:4px} ol b{color:var(--fg)}
+a.btn{display:block;text-align:center;text-decoration:none;font-weight:700;border-radius:10px;padding:15px;background:var(--accent);color:#1a1405}
+a.btn.alt{background:transparent;color:var(--fg);border:1px solid var(--line)}
+p{margin:0;color:var(--dim)}
+</style>
+</head>
+<body>
+<main>
+  <h1>Intercom <b>Local</b></h1>
+  <p><b style="color:var(--fg)">¿Es un Android?</b> No sigas estos pasos: instala la app Intercom Local y toca “Unirse a otro Android”.</p>
+  <p>Esto se hace <b style="color:var(--fg)">una sola vez</b> en el iPhone. El certificado permite que Safari use el micrófono con este Android sin internet.</p>
+
+  <section class="step">
+    <h2><span>1</span>Descargar el certificado</h2>
+    <a class="btn" href="/ca.crt">Descargar certificado</a>
+    <ol>
+      <li>Safari dirá que el sitio quiere descargar un perfil: toca <b>Permitir</b>.</li>
+    </ol>
+  </section>
+
+  <section class="step">
+    <h2><span>2</span>Instalarlo</h2>
+    <ol>
+      <li>Abre <b>Ajustes</b>. Arriba aparece <b>Perfil descargado</b> (o en General → VPN y gestión de dispositivos).</li>
+      <li>Toca <b>Instalar</b>, escribe tu código y vuelve a tocar <b>Instalar</b>.</li>
+    </ol>
+  </section>
+
+  <section class="step">
+    <h2><span>3</span>Activar la confianza</h2>
+    <ol>
+      <li>Ajustes → <b>General</b> → <b>Información</b> → al final, <b>Ajustes de confianza de certificados</b>.</li>
+      <li>Activa <b>Intercom Local CA</b> y acepta.</li>
+    </ol>
+  </section>
+
+  <section class="step">
+    <h2><span>4</span>Abrir el intercomunicador</h2>
+    <a class="btn" id="go" href="#">Abrir intercomunicador</a>
+    <p>Ya en la página, toca Compartir → <b style="color:var(--fg)">Agregar a inicio</b> para abrirla con un toque la próxima vez.</p>
+  </section>
+</main>
+<script>
+  document.getElementById('go').href = 'https://' + location.hostname + ':8443/';
+</script>
+</body>
+</html>

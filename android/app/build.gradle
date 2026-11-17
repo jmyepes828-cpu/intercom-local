@@ -1,0 +1,46 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'co.intercom.local'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'co.intercom.local'
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName '1.0'
+    }
+
+    // Firma fija: así las actualizaciones se instalan encima sin desinstalar
+    // (y el iPhone no tiene que volver a instalar el certificado).
+    signingConfigs {
+        fixed {
+            storeFile file('intercom.keystore')
+            storePassword 'intercom'
+            keyAlias 'intercom'
+            keyPassword 'intercom'
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.fixed
+        }
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.fixed
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+    implementation 'com.google.zxing:core:3.5.3'
+}
